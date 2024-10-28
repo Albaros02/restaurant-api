@@ -5,7 +5,7 @@ import { Injectable } from '@nestjs/common';
 import { FileEntity } from 'apps/restaurant/src/domain/entities/file.entity';
 import { FilePersistence } from '../../persistence/file.persistence';
 import { UserPersistence } from '../../persistence/user.persistence';
-import { UserEntity } from 'apps/restaurant/src/domain/entities/user.entity';
+import { ClientEntity } from 'apps/restaurant/src/domain/entities/client.entity';
 
 @Injectable()
 export class FileProfile extends AutomapperProfile {
@@ -27,7 +27,7 @@ export class FileProfile extends AutomapperProfile {
                 forMember(dest => dest.originalFileName, mapFrom(src => src.props.originalFileName)),
                 forMember(dest => dest.thumbnailFileName, mapFrom(src => src.props.thumbnailFileName)),
                 forMember(dest => dest.user, mapFrom(src => {
-                    return this.mapper.map(src.props.user, UserEntity, UserPersistence); 
+                    return this.mapper.map(src.props.user, ClientEntity, UserPersistence); 
                 }))
             );
 
@@ -42,7 +42,7 @@ export class FileProfile extends AutomapperProfile {
                     isPrivate: src.isPrivate,
                     originalFileName: src.originalFileName,
                     thumbnailFileName: src.thumbnailFileName,
-                    user: this.mapper.map(src.user, UserPersistence, UserEntity)
+                    user: this.mapper.map(src.user, UserPersistence, ClientEntity)
                 }))),
                 forMember(dest => dest.id, mapFrom(src => src.id))
             );

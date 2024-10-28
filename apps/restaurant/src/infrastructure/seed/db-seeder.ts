@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { IUserRepository } from "../../application/interfaces/reposoitories/iuser-repository";
 import { ILoggerService } from "../../application/services/ilogger.service";
-import { UserEntity } from "../../domain/entities/user.entity";
+import { ClientEntity } from "../../domain/entities/client.entity";
 
 @Injectable()
 export class DbSeeder {
@@ -28,7 +28,7 @@ export class DbSeeder {
             this.logger.info(`User with email ${email} already exists.`);
             return;
         }
-        const newUser = new UserEntity({email});
+        const newUser = new ClientEntity({email});
         newUser.id = userId; 
         await this.userRepository.saveNew(newUser);
         this.logger.info(`User ${email} created successfully.`);
