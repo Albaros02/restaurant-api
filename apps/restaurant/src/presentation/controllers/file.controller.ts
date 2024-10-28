@@ -1,22 +1,22 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, NotImplementedException, UseInterceptors, UploadedFile, Inject, Res, Query, HttpStatus } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateFileDto } from 'apps/restaurant/src/application/features/file/commands/create/file.create.dto.command';
-import { CreateFileCommand } from '../../application/features/file/commands/create/file.create.command';
+import { CreateFileDto } from 'apps/restaurant/src/application/features/client/commands/create/client.create.dto.command';
+import { CreateFileCommand } from '../../application/features/client/commands/create/client.create.command';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { LoggerService } from '../../application/services/ilogger.service';
 import { Result } from 'libs/common/application/base';
 import { FileEntity } from '../../domain/entities/file.entity';
 import { GetTokenUser } from 'libs/common/presentation/auth/decorators/get-user.decorator';
-import { GetOneFileQuery } from '../../application/features/file/queries/get-one/file.get-one.query';
+import { GetOneFileQuery } from '../../application/features/client/queries/get-one/client.get-one.query';
 import { FileModel } from '../../domain/models/file.model';
-import { GetOneFileDto } from '../../application/features/file/queries/get-one/file.get-one.dto';
+import { GetOneClientDto } from '../../application/features/client/queries/get-one/client.get-one.dto';
 import { Response } from 'express';
-import { GetAllFilesQuery } from '../../application/features/file/queries/get-all/file.get-all.query';
+import { GetAllFilesQuery } from '../../application/features/client/queries/get-all/client.get-all.query';
 import { PaginationDto } from 'libs/common/presentation/dtos/pagination.dto';
-import { GetAllFilesDto } from '../../application/features/file/queries/get-all/file.get-all.dto';
-import { DeleteFileCommand } from '../../application/features/file/commands/delete/file.delete.command';
-import { GetThumbnailQuery } from '../../application/features/file/queries/get-thumbnail/file.get-thumbnail.query';
-import { GetThumbnailDto } from '../../application/features/file/queries/get-thumbnail/file.get-thumbnail.dto';
+import { GetAllFilesDto } from '../../application/features/client/queries/get-all/client.get-all.dto';
+import { DeleteFileCommand } from '../../application/features/client/commands/delete/client.delete.command';
+import { GetThumbnailQuery } from '../../application/features/client/queries/get-thumbnail/file.get-thumbnail.query';
+import { GetThumbnailDto } from '../../application/features/client/queries/get-thumbnail/file.get-thumbnail.dto';
 
 @Controller('file')
 export class FileController {
@@ -91,7 +91,7 @@ export class FileController {
     @Res() res: Response
   ) {
     const ans = await this.queryBus.execute<GetOneFileQuery, Result<FileModel>>(
-      new GetOneFileQuery(new GetOneFileDto(id), userId)
+      new GetOneFileQuery(new GetOneClientDto(id), userId)
     );
     
     if (ans.isFailure) {

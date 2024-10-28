@@ -1,8 +1,5 @@
 import { Inject, Injectable, Logger } from "@nestjs/common";
-import { IAuditLogRepository } from "../interfaces/reposoitories/iaudit-log.repository";
-import { AuditLogEntity } from "../../domain/entities/aduit-log.entity";
 import { EventBus } from "@nestjs/cqrs";
-import { AuditLogCreatedEvent } from "../features/audit-log/events/create/audit-log.create.event";
 
 export interface ILoggerService 
 {
@@ -12,7 +9,6 @@ export interface ILoggerService
     auditAsync(userId: string,message: string | any); 
 }
 
-// Basic implementation for now, later maybe extend it with Seq or other external logging service 
 @Injectable()
 export class LoggerService extends Logger implements ILoggerService
 {
@@ -21,9 +17,11 @@ export class LoggerService extends Logger implements ILoggerService
     ) {
         super("FileGateWay");
     }
-
+    
     async auditAsync(userId: string, message: string | any) {
-        await this.eventBus.publish(new AuditLogCreatedEvent(userId,message))
+        
+        //TODO:  Basic implementation for now, later maybe extend it with Seq or other external logging service 
+        // await this.eventBus.publish(new AuditLogCreatedEvent(userId,message))
         return this.info(message); 
     }
 

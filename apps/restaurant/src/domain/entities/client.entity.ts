@@ -3,6 +3,7 @@ import { BaseDomainEntity } from "libs/common/domain/base-domain.entity";
 import { AgeLimitAllowance } from "../constants/age-limit-allowance.constants";
 import { Result } from "libs/common/application/base";
 import { AppError } from "libs/common/application/errors/app.errors";
+import { StringExtension } from "../../infrastructure/utils/string-extensions";
 
 export class ClientEntityProps
 {
@@ -34,6 +35,12 @@ export class ClientEntity extends BaseDomainEntity
         {
             return Result.Fail(new AppError.ValidationError(`The user's age is not allowed, must be greater or equal to ${AgeLimitAllowance}.`))
         }
+
+        if(!StringExtension.isValidPhoneNumber(props.phone))
+        {
+            return Result.Fail(new AppError.ValidationError(`The user's number is not valid.`))
+        }
+    
         return Result.Ok(new ClientEntity(props)); 
     } 
 }

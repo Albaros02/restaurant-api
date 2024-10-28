@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { IClientRepository } from "../../application/interfaces/reposoitories/iuser-repository";
+import { IClientRepository } from "../../application/interfaces/reposoitories/iclient-repository";
 import { ILoggerService } from "../../application/services/ilogger.service";
 import { ClientEntity } from "../../domain/entities/client.entity";
 

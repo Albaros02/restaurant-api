@@ -10,8 +10,8 @@ import { PersistenceEntities } from './infrastructure/persistence/persistence';
 import { RepositoryProviders } from './infrastructure/repositories/repositories';
 import { EnvVarsAccessor } from 'libs/common/configs/env-vars-accessor';
 import { config } from 'dotenv';
-import { FileCommandHandlers } from './application/features/file/commands/file.commands';
-import { FileQueries } from './application/features/file/queries/file.queries';
+import { ClientCommandHandlers } from './application/features/client/commands/client.commands';
+import { ClientQueries } from './application/features/client/queries/client.queries';
 import { MulterModule } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
 import { ExternalServicesProviders } from './infrastructure/external-services/external-services';
@@ -49,8 +49,8 @@ config();
   providers: [
     ...ApplicationServices, 
     ...MapperProfiles,
-    ...FileCommandHandlers, 
-    ...FileQueries, 
+    ...ClientCommandHandlers, 
+    ...ClientQueries, 
     ...AuditLogEvents, 
     ...RepositoryProviders, 
     ...ExternalServicesProviders, 
