@@ -6,7 +6,7 @@ import { ClientEntity } from "../../domain/entities/client.entity";
 @Injectable()
 export class DbSeeder {
     constructor(
-        @Inject("IUserRepository")
+        @Inject("IClientRepository")
         private readonly clientRepository: IClientRepository, 
         @Inject("ILoggerService")
         private readonly logger: ILoggerService 

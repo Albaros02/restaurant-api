@@ -42,6 +42,6 @@ export class DeleteClientCommandHandler implements ICommandHandler<DeleteClientC
             this.logger.error(`Error deleting the client.`)
             return ans; 
         }
-        return Result.Ok(ans.unwrap())
+        return ans;
    }
 }

@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { FileGatewayModule } from './restaurant.module';
+import { RestaurantModule } from './restaurant.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { EnvVarsAccessor } from 'libs/common/configs/env-vars-accessor';
 import { DbSeeder } from './infrastructure/seed/db-seeder';
 
 async function bootstrap() {
 
-  const app = await NestFactory.create(FileGatewayModule);
+  const app = await NestFactory.create(RestaurantModule);
   
   app.enableCors({
     origin: '*',
@@ -15,19 +15,19 @@ async function bootstrap() {
     credentials: true,
   });
 
-  app.setGlobalPrefix('api/fileGW');
+  app.setGlobalPrefix('api/restaurant');
 
   const openApi = new DocumentBuilder()
-    .setTitle('File Gateway Microservice')
+    .setTitle('Restaurant Microservice')
     .setVersion('1.0')
     .build(); 
 
   const document = SwaggerModule.createDocument(app, openApi);
-  SwaggerModule.setup('api/fileGW/docs', app, document);
+  SwaggerModule.setup('api/restaurant/docs', app, document);
 
   await app.startAllMicroservices();
   await app.listen(EnvVarsAccessor.MS_PORT);
-  console.log(`FileGateway microservice is running on: ${await app.getUrl()}`);
+  console.log(`Restaurant microservice is running on: ${await app.getUrl()}`);
   
   const dbSeeder = app.get<DbSeeder>(DbSeeder);
   await dbSeeder.seed(); 

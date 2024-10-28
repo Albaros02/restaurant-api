@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { FileGatewayModule } from './../src/restaurant.module';
+import { RestaurantModule } from './../src/restaurant.module';
 
 describe('FileGatewayController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [FileGatewayModule],
+      imports: [RestaurantModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();

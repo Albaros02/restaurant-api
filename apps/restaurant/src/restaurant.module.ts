@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { FileGateWayControllers } from './presentation/controllers/controllers';
+import { RestaurantControllers } from './presentation/controllers/controllers';
 import { CommonModule } from 'libs/common';
 import { ApplicationServices } from './application/services/application.services';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
-import { MapperProfiles } from './infrastructure/mappers/profiles/mappers.profiles';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersistenceEntities } from './infrastructure/persistence/persistence';
 import { RepositoryProviders } from './infrastructure/repositories/repositories';
@@ -14,10 +13,9 @@ import { ClientCommandHandlers } from './application/features/client/commands/cl
 import { ClientQueries } from './application/features/client/queries/client.queries';
 import { MulterModule } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
-import { ExternalServicesProviders } from './infrastructure/external-services/external-services';
 import { DbSeeder } from './infrastructure/seed/db-seeder';
 import { RedisModule } from '@nestjs-modules/ioredis';
-import { AuditLogEvents } from './application/features/audit-log/events/audit-log.events';
+import { MappersProfiles } from './infrastructure/mappers/profiles/mappers.profiles';
 config();
 @Module({
   imports: [
@@ -37,24 +35,24 @@ config();
       logging: true,                   
     }),
     TypeOrmModule.forFeature(PersistenceEntities),
-    MulterModule.register({
-      storage: memoryStorage()
-    }),
-    RedisModule.forRoot({
-      type: 'single',
-      url: `redis://${EnvVarsAccessor.REDIS_HOST}:${EnvVarsAccessor.REDIS_PORT}`,
-    }),
+    // MulterModule.register({
+    //   storage: memoryStorage()
+    // }),
+    // RedisModule.forRoot({
+    //   type: 'single',
+    //   url: `redis://${EnvVarsAccessor.REDIS_HOST}:${EnvVarsAccessor.REDIS_PORT}`,
+    // }),
   ],
-  controllers: FileGateWayControllers,
+  controllers: RestaurantControllers,
   providers: [
     ...ApplicationServices, 
-    ...MapperProfiles,
+    ...MappersProfiles,
     ...ClientCommandHandlers, 
     ...ClientQueries, 
-    ...AuditLogEvents, 
+    // ...AuditLogEvents, 
     ...RepositoryProviders, 
-    ...ExternalServicesProviders, 
+    // ...ExternalServicesProviders, 
     DbSeeder
   ],
 })
-export class FileGatewayModule {}
+export class RestaurantModule {}

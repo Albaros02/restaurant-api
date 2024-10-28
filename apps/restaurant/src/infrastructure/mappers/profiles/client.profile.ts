@@ -17,7 +17,7 @@ export class ClientProfile extends AutomapperProfile {
                 forMember(dest => dest.email, mapFrom(src => src.props.email)),
                 forMember(dest => dest.age, mapFrom(src => src.props.age)),
                 forMember(dest => dest.name, mapFrom(src => src.props.name)),
-                forMember(dest => dest.name, mapFrom(src => src.props.name)),
+                forMember(dest => dest.phone, mapFrom(src => src.props.phone)),
                 forMember(dest => dest.id, mapFrom(src => src.id))
             );
 

@@ -1,5 +1,5 @@
-import { FileController } from "./file.controller";
+import { ClientController } from "./client.controller";
 
-export const FileGateWayControllers = [
-    FileController
+export const RestaurantControllers = [
+    ClientController
 ]

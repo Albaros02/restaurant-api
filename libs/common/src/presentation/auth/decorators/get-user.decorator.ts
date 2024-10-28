@@ -10,7 +10,8 @@ export const GetTokenUser = createParamDecorator(
     //   return (!data) ? tokenUser : tokenUser[data];
 
     
-  // TODO: may be here we are calling an Identity microservice or have a jwt generator 
+  // TODO: This is mocked on propose 
+  // may be here we are calling an Identity microservice or have a jwt generator 
   // for every microservice with same jwt secret... something along those lines 
     return "670d1451-5974-8002-9288-aa476cb08e01";
   }
