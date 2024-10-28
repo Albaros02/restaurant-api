@@ -21,7 +21,7 @@ export class ClientEntityProps
  
 export class ClientEntity extends BaseDomainEntity 
 {
-    private constructor(props: ClientEntityProps) {
+    constructor(props: ClientEntityProps) {
         super();
         this.props = props;
     }

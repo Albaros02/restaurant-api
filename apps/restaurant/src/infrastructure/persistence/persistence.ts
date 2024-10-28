@@ -1,9 +1,9 @@
-import { AuditLogPersistence } from "./aduit-log.persistence";
-import { FilePersistence } from "./file.persistence";
-import { UserPersistence } from "./user.persistence";
+import { ClientPersistence } from "./client.persistence";
+import { OrderPersistence } from "./order.persistence";
+import { RestaurantPersistence } from "./restaurant.persistence";
 
 export const PersistenceEntities = [
-    UserPersistence,
-    FilePersistence,
-    AuditLogPersistence
+    ClientPersistence,
+    RestaurantPersistence,
+    OrderPersistence
 ]

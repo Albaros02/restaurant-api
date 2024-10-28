@@ -21,7 +21,7 @@ export class RestaurantEntityProps
  
 export class RestaurantEntity extends BaseDomainEntity 
 {
-    private constructor(props: RestaurantEntityProps) {
+    constructor(props: RestaurantEntityProps) {
         super();
         this.props = props;
     }

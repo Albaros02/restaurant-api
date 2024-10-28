@@ -18,7 +18,7 @@ export class OrderEntityProps
  
 export class OrderEntity extends BaseDomainEntity 
 {
-    private constructor(props: OrderEntityProps) {
+    public constructor(props: OrderEntityProps) {
         super();
         this.props = props;
     }

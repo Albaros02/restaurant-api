@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { IUserRepository } from "../../application/interfaces/reposoitories/iuser-repository";
+import { IClientRepository } from "../../application/interfaces/reposoitories/iuser-repository";
 import { ILoggerService } from "../../application/services/ilogger.service";
 import { ClientEntity } from "../../domain/entities/client.entity";
 
@@ -7,7 +7,7 @@ import { ClientEntity } from "../../domain/entities/client.entity";
 export class DbSeeder {
     constructor(
         @Inject("IUserRepository")
-        private readonly userRepository: IUserRepository, 
+        private readonly clientRepository: IClientRepository, 
         @Inject("ILoggerService")
         private readonly logger: ILoggerService 
     ) {}
@@ -18,7 +18,8 @@ export class DbSeeder {
     }
 
     private async createTestingUser(userId: string, email: string) {
-        const existingUser = await this.userRepository.findOneByFilter({
+        // TODO: add some restaurants and few users 
+        const existingUser = await this.clientRepository.findOneByFilter({
             where: {
                 email: email
             }
@@ -28,9 +29,14 @@ export class DbSeeder {
             this.logger.info(`User with email ${email} already exists.`);
             return;
         }
-        const newUser = new ClientEntity({email});
+        const newUser = new ClientEntity({
+            email, 
+            phone: "+55555555",
+            age: 20,
+            name: "User 1"
+        });
         newUser.id = userId; 
-        await this.userRepository.saveNew(newUser);
+        await this.clientRepository.saveNew(newUser);
         this.logger.info(`User ${email} created successfully.`);
     }
 }
