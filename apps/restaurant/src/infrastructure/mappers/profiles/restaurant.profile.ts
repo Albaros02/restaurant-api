@@ -2,10 +2,10 @@ import { createMap, forMember, mapFrom } from '@automapper/core';
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
 import { Injectable } from '@nestjs/common';
-import { RestaurantEntity } from 'apps/restaurant/src/domain/entities/Restaurant.entity';
-import { RestaurantPersistence } from '../../persistence/Restaurant.persistence';
 import { ClientEntity } from 'apps/restaurant/src/domain/entities/client.entity';
 import { ClientPersistence } from '../../persistence/client.persistence';
+import { RestaurantEntity } from 'apps/restaurant/src/domain/entities/restaurant.entity';
+import { RestaurantPersistence } from '../../persistence/restaurant.persistence';
 
 @Injectable()
 export class RestaurantProfile extends AutomapperProfile {

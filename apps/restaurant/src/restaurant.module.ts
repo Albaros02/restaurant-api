@@ -17,6 +17,8 @@ import { DbSeeder } from './infrastructure/seed/db-seeder';
 import { RedisModule } from '@nestjs-modules/ioredis';
 import { MappersProfiles } from './infrastructure/mappers/profiles/mappers.profiles';
 import { RestaurantCommandHandlers } from './application/features/restaurant/commands/restaurant.commands';
+import { RestaurantQueries } from './application/features/restaurant/queries/restaurant.queries';
+import { RestaurantProfile } from './infrastructure/mappers/profiles/restaurant.profile';
 config();
 @Module({
   imports: [
@@ -46,10 +48,12 @@ config();
   ],
   controllers: RestaurantControllers,
   providers: [
+    RestaurantProfile,
     ...ApplicationServices, 
     ...MappersProfiles,
     ...ClientCommandHandlers, 
     ...RestaurantCommandHandlers, 
+    ...RestaurantQueries, 
     ...ClientQueries, 
     // ...AuditLogEvents, 
     ...RepositoryProviders, 

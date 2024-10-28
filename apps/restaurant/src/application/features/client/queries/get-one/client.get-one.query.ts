@@ -36,7 +36,7 @@ export class GetOneClientQueryHandler implements IQueryHandler<GetOneClientQuery
         })
         if(!client)
         {
-            this.logger.error(`Client with name ${clientId} not found.`)  
+            this.logger.error(`Client with id ${clientId} not found.`)  
             return Result.Fail(new AppError.NotFoundError(`Client not found.`))
         }
         return Result.Ok(client)

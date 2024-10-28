@@ -18,7 +18,7 @@ export class RestaurantPersistence extends AuditablePersistenceEntity{
     public capacity: number
 
     @AutoMap()
-    @ManyToMany(() => ClientPersistence, { nullable: true, eager: true}) 
-    @JoinTable()
-    public clients?: ClientPersistence[]
+    @ManyToMany(() => ClientPersistence, (client) => client.restaurants, { nullable: true, eager: true })
+    @JoinTable()  
+    public clients?: ClientPersistence[];
 }

@@ -14,6 +14,8 @@ import { GetAllClientsDto } from '../../application/features/client/queries/get-
 import { GetAllClientQuery } from '../../application/features/client/queries/get-all/client.get-all.query';
 import { DeleteClientCommand } from '../../application/features/client/commands/delete/client.delete.command';
 import { ApiTags } from '@nestjs/swagger';
+import { ReserveRestaurantDto } from '../../application/features/client/commands/reserve/client.reserve.dto.command';
+import { ReserveRestaurantCommand } from '../../application/features/client/commands/reserve/client.reserve.command';
 
 @ApiTags('Client')
 @Controller('client')
@@ -92,5 +94,13 @@ export class ClientController {
       new DeleteClientCommand(userId,clientId)
     );
     return ans; 
+  }
+
+  @Post('reserve')
+  async reserve(
+    @GetTokenUser('sub') userId: string, 
+    @Body() dto : ReserveRestaurantDto
+  ) {
+    return await this.commandBus.execute<ReserveRestaurantCommand,Result<any>>(new ReserveRestaurantCommand(dto));
   }
 }
