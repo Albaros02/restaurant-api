@@ -15,7 +15,7 @@ export class LoggerService extends Logger implements ILoggerService
     constructor(
         private readonly eventBus: EventBus
     ) {
-        super("FileGateWay");
+        super("Restaurant");    
     }
     
     async auditAsync(userId: string, message: string | any) {

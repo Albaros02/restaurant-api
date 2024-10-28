@@ -1,6 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 import { AuditablePersistenceEntity } from 'libs/common/infrastructure/persistence/auditable.persistence.entity';
-import { Entity, Column, ManyToMany, JoinTable, OneToOne } from 'typeorm';
+import { Entity, Column, ManyToMany, JoinTable, OneToOne, JoinColumn } from 'typeorm';
 import { ClientPersistence } from './client.persistence';
 import { RestaurantPersistence } from './restaurant.persistence';
 
@@ -12,10 +12,21 @@ export class OrderPersistence extends AuditablePersistenceEntity{
     public description: string
 
     @AutoMap()
-    @OneToOne(() => ClientPersistence)
+    @Column({ type: "text", name: "client_id" })
+    public clientId: string
+
+    @AutoMap()
+    @Column({ type: "text", name: "restaurant_id" })
+    public restaurantId: string
+
+
+    @AutoMap()
+    @OneToOne(() => ClientPersistence ,{ eager: true })
+    @JoinColumn({name: "client_id"})
     public client: ClientPersistence | { id : string }
 
     @AutoMap()
-    @OneToOne(() => RestaurantPersistence)
+    @OneToOne(() => RestaurantPersistence,{ eager: true })
+    @JoinColumn({name: "restaurant_id"})
     public restaurant: RestaurantPersistence | { id : string }
 }

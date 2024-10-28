@@ -20,6 +20,8 @@ export class OrderProfile extends AutomapperProfile {
             // Mapping from OrderEntity to OrderPersistence
             createMap(mapper, OrderEntity, OrderPersistence,
                 forMember(dest => dest.description, mapFrom(src => src.props.description)),
+                forMember(dest => dest.clientId, mapFrom(src => src.props.client.id)),
+                forMember(dest => dest.restaurantId, mapFrom(src => src.props.restaurant.id)),
                 forMember(dest => dest.client, 
                     mapFrom(src => mapper.map(src.props.client,ClientEntity, ClientPersistence))
                 ),

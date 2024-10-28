@@ -16,7 +16,7 @@ import { GetOneRestaurantQuery } from '../../application/features/restaurant/que
 import { GetOneRestaurantDto } from '../../application/features/restaurant/queries/get-one/restaurant.get-one.dto';
 
 @ApiTags('Restaurant')
-@Controller('Restaurant')
+@Controller('restaurant')
 export class RestaurantController {
   constructor(
     private readonly queryBus: QueryBus, 

@@ -47,7 +47,7 @@ export class OrderController {
       return res.status(HttpStatus.BAD_REQUEST).send({error: "Missing pagination."});
     }
 
-    const ans = await this.queryBus.execute<GetAllOrderQuery,Result<never>>(      
+    const ans = await this.queryBus.execute<GetAllOrderQuery,Result<OrderEntity>>(      
       new GetAllOrderQuery(
         userId,
         filter,

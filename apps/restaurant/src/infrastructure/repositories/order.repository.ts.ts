@@ -22,7 +22,9 @@ export class OrderRepository {
      * Save a new Order entity
      */
     async saveNew(Order: OrderEntity): Promise<OrderPersistence> {
+        console.log("Mapping at save new")
         const orderPersistence = this.mapper.map(Order, OrderEntity, OrderPersistence);
+        console.log({orderPersistence})
         return await this.repository.save(orderPersistence);
     }
 
