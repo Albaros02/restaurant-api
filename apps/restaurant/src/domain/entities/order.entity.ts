@@ -10,10 +10,10 @@ export class OrderEntityProps
     public description: string
 
     @AutoMap()
-    public client: ClientEntity
+    public client: ClientEntity | { id: string }
 
     @AutoMap()
-    public restaurant: RestaurantEntity
+    public restaurant: RestaurantEntity | { id: string }
 }
  
 export class OrderEntity extends BaseDomainEntity 

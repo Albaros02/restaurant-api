@@ -19,6 +19,8 @@ import { MappersProfiles } from './infrastructure/mappers/profiles/mappers.profi
 import { RestaurantCommandHandlers } from './application/features/restaurant/commands/restaurant.commands';
 import { RestaurantQueries } from './application/features/restaurant/queries/restaurant.queries';
 import { RestaurantProfile } from './infrastructure/mappers/profiles/restaurant.profile';
+import { OrderQueries } from './application/features/orders/queries/order.queries';
+import { OrderCommandHandlers } from './application/features/orders/commands/order.commands';
 config();
 @Module({
   imports: [
@@ -53,7 +55,9 @@ config();
     ...MappersProfiles,
     ...ClientCommandHandlers, 
     ...RestaurantCommandHandlers, 
-    ...RestaurantQueries, 
+    ...RestaurantQueries,
+    ...OrderCommandHandlers,
+    ...OrderQueries,
     ...ClientQueries, 
     // ...AuditLogEvents, 
     ...RepositoryProviders, 
