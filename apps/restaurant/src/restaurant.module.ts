@@ -16,6 +16,7 @@ import { memoryStorage } from 'multer';
 import { DbSeeder } from './infrastructure/seed/db-seeder';
 import { RedisModule } from '@nestjs-modules/ioredis';
 import { MappersProfiles } from './infrastructure/mappers/profiles/mappers.profiles';
+import { RestaurantCommandHandlers } from './application/features/restaurant/commands/restaurant.commands';
 config();
 @Module({
   imports: [
@@ -48,6 +49,7 @@ config();
     ...ApplicationServices, 
     ...MappersProfiles,
     ...ClientCommandHandlers, 
+    ...RestaurantCommandHandlers, 
     ...ClientQueries, 
     // ...AuditLogEvents, 
     ...RepositoryProviders, 

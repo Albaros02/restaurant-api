@@ -13,7 +13,9 @@ import { ClientEntity } from '../../domain/entities/client.entity';
 import { GetAllClientsDto } from '../../application/features/client/queries/get-all/client.get-all.dto';
 import { GetAllClientQuery } from '../../application/features/client/queries/get-all/client.get-all.query';
 import { DeleteClientCommand } from '../../application/features/client/commands/delete/client.delete.command';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Client')
 @Controller('client')
 export class ClientController {
   constructor(
